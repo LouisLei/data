@@ -1,0 +1,10 @@
+com\lakala\ipos\paymentdata\repository\PaymentDataRepository.class
+com\lakala\ipos\paymentdata\repository\PaymentDataRepositoryImpl.class
+com\lakala\ipos\paymentdata\document\PaymentDataDocument.class
+com\lakala\ipos\paymentdata\repository\PaymentDataRepositoryCustom.class
+com\lakala\ipos\paymentdata\service\impl\PaymentDataServiceImpl.class
+com\lakala\ipos\paymentdata\task\PaymentDataTask.class
+com\lakala\ipos\paymentdata\service\PaymentDataService.class
+com\lakala\ipos\paymentdata\util\GzipUtils.class
+com\lakala\ipos\paymentdata\util\Constants.class
+com\lakala\ipos\paymentdata\callback\PaymentDataCallBack.class

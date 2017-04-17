@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lakala.ipos.appmalldata.dao.AppmallDataMapper" >
+  <resultMap id="BaseResultMap" type="com.lakala.ipos.appmalldata.model.AppmallData" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="RECV_ID" property="recvId" jdbcType="BIGINT" />
+    <result column="ACTION_ID" property="actionId" jdbcType="VARCHAR" />
+    <result column="EVENT_ID" property="eventId" jdbcType="VARCHAR" />
+    <result column="START_TIME_STAMP" property="startTimeStamp" jdbcType="TIMESTAMP" />
+    <result column="END_TIME_STAMP" property="endTimeStamp" jdbcType="TIMESTAMP" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="VERSION_ID" property="versionId" jdbcType="VARCHAR" />
+    <result column="DOWN_STATUS" property="downStatus" jdbcType="VARCHAR" />
+    <result column="DOWN_FAILED_REASON" property="downFailedReason" jdbcType="VARCHAR" />
+    <result column="DOWN_PRO_EXCEPTION" property="downProException" jdbcType="VARCHAR" />
+    <result column="APP_SIZE" property="appSize" jdbcType="BIGINT" />
+    <result column="OLD_VERSION_ID" property="oldVersionId" jdbcType="VARCHAR" />
+    <result column="NEW_VERSION_ID" property="newVersionId" jdbcType="VARCHAR" />
+    <result column="INSTALL_STATUS" property="installStatus" jdbcType="VARCHAR" />
+    <result column="INSTALL_FAILED_REASON" property="installFailedReason" jdbcType="VARCHAR" />
+    <result column="INSTALL_PRO_EXCEPTION" property="installProException" jdbcType="VARCHAR" />
+    <result column="CRASH" property="crash" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="READ_FLAG" property="readFlag" jdbcType="VARCHAR" />
+    <result column="DEL_STATUS" property="delStatus" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="EXCEPTION" property="exception" jdbcType="VARCHAR" />
+    <result column="EXCEPTION_MSG" property="exceptionMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RECV_ID, ACTION_ID, EVENT_ID, START_TIME_STAMP, END_TIME_STAMP, APP_ID, VERSION_ID, 
+    DOWN_STATUS, DOWN_FAILED_REASON, DOWN_PRO_EXCEPTION, APP_SIZE, OLD_VERSION_ID, NEW_VERSION_ID, 
+    INSTALL_STATUS, INSTALL_FAILED_REASON, INSTALL_PRO_EXCEPTION, CRASH, CREATE_TIME, 
+    MODIFY_TIME, READ_FLAG, DEL_STATUS, SN, EXCEPTION, EXCEPTION_MSG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ipos_appmall_data
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ipos_appmall_data
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lakala.ipos.appmalldata.model.AppmallData" >
+    insert into ipos_appmall_data (ID, RECV_ID, ACTION_ID, 
+      EVENT_ID, START_TIME_STAMP, END_TIME_STAMP, 
+      APP_ID, VERSION_ID, DOWN_STATUS, 
+      DOWN_FAILED_REASON, DOWN_PRO_EXCEPTION, APP_SIZE, 
+      OLD_VERSION_ID, NEW_VERSION_ID, INSTALL_STATUS, 
+      INSTALL_FAILED_REASON, INSTALL_PRO_EXCEPTION, 
+      CRASH, CREATE_TIME, MODIFY_TIME, 
+      READ_FLAG, DEL_STATUS, SN, 
+      EXCEPTION, EXCEPTION_MSG)
+    values (#{id,jdbcType=BIGINT}, #{recvId,jdbcType=BIGINT}, #{actionId,jdbcType=VARCHAR}, 
+      #{eventId,jdbcType=VARCHAR}, #{startTimeStamp,jdbcType=TIMESTAMP}, #{endTimeStamp,jdbcType=TIMESTAMP}, 
+      #{appId,jdbcType=VARCHAR}, #{versionId,jdbcType=VARCHAR}, #{downStatus,jdbcType=VARCHAR}, 
+      #{downFailedReason,jdbcType=VARCHAR}, #{downProException,jdbcType=VARCHAR}, #{appSize,jdbcType=BIGINT}, 
+      #{oldVersionId,jdbcType=VARCHAR}, #{newVersionId,jdbcType=VARCHAR}, #{installStatus,jdbcType=VARCHAR}, 
+      #{installFailedReason,jdbcType=VARCHAR}, #{installProException,jdbcType=VARCHAR}, 
+      #{crash,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{readFlag,jdbcType=VARCHAR}, #{delStatus,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{exception,jdbcType=VARCHAR}, #{exceptionMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lakala.ipos.appmalldata.model.AppmallData" >
+    insert into ipos_appmall_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="recvId != null" >
+        RECV_ID,
+      </if>
+      <if test="actionId != null" >
+        ACTION_ID,
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="startTimeStamp != null" >
+        START_TIME_STAMP,
+      </if>
+      <if test="endTimeStamp != null" >
+        END_TIME_STAMP,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="versionId != null" >
+        VERSION_ID,
+      </if>
+      <if test="downStatus != null" >
+        DOWN_STATUS,
+      </if>
+      <if test="downFailedReason != null" >
+        DOWN_FAILED_REASON,
+      </if>
+      <if test="downProException != null" >
+        DOWN_PRO_EXCEPTION,
+      </if>
+      <if test="appSize != null" >
+        APP_SIZE,
+      </if>
+      <if test="oldVersionId != null" >
+        OLD_VERSION_ID,
+      </if>
+      <if test="newVersionId != null" >
+        NEW_VERSION_ID,
+      </if>
+      <if test="installStatus != null" >
+        INSTALL_STATUS,
+      </if>
+      <if test="installFailedReason != null" >
+        INSTALL_FAILED_REASON,
+      </if>
+      <if test="installProException != null" >
+        INSTALL_PRO_EXCEPTION,
+      </if>
+      <if test="crash != null" >
+        CRASH,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG,
+      </if>
+      <if test="delStatus != null" >
+        DEL_STATUS,
+      </if>
+      <if test="sn != null" >
+        SN,
+      </if>
+      <if test="exception != null" >
+        EXCEPTION,
+      </if>
+      <if test="exceptionMsg != null" >
+        EXCEPTION_MSG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="recvId != null" >
+        #{recvId,jdbcType=BIGINT},
+      </if>
+      <if test="actionId != null" >
+        #{actionId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTimeStamp != null" >
+        #{startTimeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimeStamp != null" >
+        #{endTimeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="versionId != null" >
+        #{versionId,jdbcType=VARCHAR},
+      </if>
+      <if test="downStatus != null" >
+        #{downStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="downFailedReason != null" >
+        #{downFailedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="downProException != null" >
+        #{downProException,jdbcType=VARCHAR},
+      </if>
+      <if test="appSize != null" >
+        #{appSize,jdbcType=BIGINT},
+      </if>
+      <if test="oldVersionId != null" >
+        #{oldVersionId,jdbcType=VARCHAR},
+      </if>
+      <if test="newVersionId != null" >
+        #{newVersionId,jdbcType=VARCHAR},
+      </if>
+      <if test="installStatus != null" >
+        #{installStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="installFailedReason != null" >
+        #{installFailedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="installProException != null" >
+        #{installProException,jdbcType=VARCHAR},
+      </if>
+      <if test="crash != null" >
+        #{crash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readFlag != null" >
+        #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="exception != null" >
+        #{exception,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionMsg != null" >
+        #{exceptionMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lakala.ipos.appmalldata.model.AppmallData" >
+    update ipos_appmall_data
+    <set >
+      <if test="recvId != null" >
+        RECV_ID = #{recvId,jdbcType=BIGINT},
+      </if>
+      <if test="actionId != null" >
+        ACTION_ID = #{actionId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTimeStamp != null" >
+        START_TIME_STAMP = #{startTimeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimeStamp != null" >
+        END_TIME_STAMP = #{endTimeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="versionId != null" >
+        VERSION_ID = #{versionId,jdbcType=VARCHAR},
+      </if>
+      <if test="downStatus != null" >
+        DOWN_STATUS = #{downStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="downFailedReason != null" >
+        DOWN_FAILED_REASON = #{downFailedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="downProException != null" >
+        DOWN_PRO_EXCEPTION = #{downProException,jdbcType=VARCHAR},
+      </if>
+      <if test="appSize != null" >
+        APP_SIZE = #{appSize,jdbcType=BIGINT},
+      </if>
+      <if test="oldVersionId != null" >
+        OLD_VERSION_ID = #{oldVersionId,jdbcType=VARCHAR},
+      </if>
+      <if test="newVersionId != null" >
+        NEW_VERSION_ID = #{newVersionId,jdbcType=VARCHAR},
+      </if>
+      <if test="installStatus != null" >
+        INSTALL_STATUS = #{installStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="installFailedReason != null" >
+        INSTALL_FAILED_REASON = #{installFailedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="installProException != null" >
+        INSTALL_PRO_EXCEPTION = #{installProException,jdbcType=VARCHAR},
+      </if>
+      <if test="crash != null" >
+        CRASH = #{crash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        DEL_STATUS = #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        SN = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="exception != null" >
+        EXCEPTION = #{exception,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionMsg != null" >
+        EXCEPTION_MSG = #{exceptionMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lakala.ipos.appmalldata.model.AppmallData" >
+    update ipos_appmall_data
+    set RECV_ID = #{recvId,jdbcType=BIGINT},
+      ACTION_ID = #{actionId,jdbcType=VARCHAR},
+      EVENT_ID = #{eventId,jdbcType=VARCHAR},
+      START_TIME_STAMP = #{startTimeStamp,jdbcType=TIMESTAMP},
+      END_TIME_STAMP = #{endTimeStamp,jdbcType=TIMESTAMP},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      VERSION_ID = #{versionId,jdbcType=VARCHAR},
+      DOWN_STATUS = #{downStatus,jdbcType=VARCHAR},
+      DOWN_FAILED_REASON = #{downFailedReason,jdbcType=VARCHAR},
+      DOWN_PRO_EXCEPTION = #{downProException,jdbcType=VARCHAR},
+      APP_SIZE = #{appSize,jdbcType=BIGINT},
+      OLD_VERSION_ID = #{oldVersionId,jdbcType=VARCHAR},
+      NEW_VERSION_ID = #{newVersionId,jdbcType=VARCHAR},
+      INSTALL_STATUS = #{installStatus,jdbcType=VARCHAR},
+      INSTALL_FAILED_REASON = #{installFailedReason,jdbcType=VARCHAR},
+      INSTALL_PRO_EXCEPTION = #{installProException,jdbcType=VARCHAR},
+      CRASH = #{crash,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      DEL_STATUS = #{delStatus,jdbcType=VARCHAR},
+      SN = #{sn,jdbcType=VARCHAR},
+      EXCEPTION = #{exception,jdbcType=VARCHAR},
+      EXCEPTION_MSG = #{exceptionMsg,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量插入 -->
+  <insert id="insertBatchByRecvId" parameterType="map"> 
+		<![CDATA[ 
+		 insert into ipos_appmall_data (ID, RECV_ID, ACTION_ID, 
+      EVENT_ID, START_TIME_STAMP, END_TIME_STAMP, 
+      APP_ID, VERSION_ID, DOWN_STATUS, 
+      DOWN_FAILED_REASON, DOWN_PRO_EXCEPTION, APP_SIZE, 
+      OLD_VERSION_ID, NEW_VERSION_ID, INSTALL_STATUS, 
+      INSTALL_FAILED_REASON, INSTALL_PRO_EXCEPTION, 
+      CRASH, SN, 
+      EXCEPTION, EXCEPTION_MSG)
+    	values 
+		]]>
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			<![CDATA[
+			(#{item.id,jdbcType=BIGINT}, #{recvId,jdbcType=BIGINT}, #{item.actionId,jdbcType=VARCHAR}, 
+     		 #{item.eventId,jdbcType=VARCHAR}, #{item.startTimeStamp,jdbcType=TIMESTAMP}, #{item.endTimeStamp,jdbcType=TIMESTAMP}, 
+      		#{item.appId,jdbcType=VARCHAR}, #{item.versionId,jdbcType=VARCHAR}, #{item.downStatus,jdbcType=VARCHAR}, 
+      		#{item.downFailedReason,jdbcType=VARCHAR}, #{item.downProException,jdbcType=VARCHAR}, #{item.appSize,jdbcType=BIGINT}, 
+      		#{item.oldVersionId,jdbcType=VARCHAR}, #{item.newVersionId,jdbcType=VARCHAR}, #{item.installStatus,jdbcType=VARCHAR}, 
+      		#{item.installFailedReason,jdbcType=VARCHAR}, #{item.installProException,jdbcType=VARCHAR}, 
+      		#{item.crash,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{item.exception,jdbcType=VARCHAR}, #{item.exceptionMsg,jdbcType=VARCHAR})
+		]]>
+		</foreach>
+	</insert>
+	<!-- 根据RecvId删除数据 -->
+	<delete id="deleteByRecvId" parameterType="java.lang.Long">
+		<![CDATA[
+			delete from ipos_appmall_data where  RECV_ID = #{recvId,jdbcType=BIGINT}
+		]]>
+	</delete>
+</mapper>

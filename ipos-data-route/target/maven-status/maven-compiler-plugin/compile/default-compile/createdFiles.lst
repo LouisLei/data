@@ -1,0 +1,9 @@
+com\lakala\ipos\model\ReceivedLog.class
+com\lakala\ipos\service\impl\ReceivedLogServiceImpl.class
+com\lakala\ipos\task\ReceiveLogDealTask$1.class
+com\lakala\ipos\task\ReceiveLogDealTask.class
+com\lakala\ipos\util\Constants.class
+com\lakala\ipos\util\GzipUtils.class
+com\lakala\ipos\util\JsonUtil.class
+com\lakala\ipos\util\FastjsonUtil.class
+com\lakala\ipos\service\ReceivedLogService.class

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lakala.ipos.receivelog.dao.ReceivedLogMapper" >
+  <resultMap id="BaseResultMap" type="com.lakala.ipos.receivelog.model.ReceivedLog" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="APP_VERSION" property="appVersion" jdbcType="VARCHAR" />
+    <result column="BIZ_CODE" property="bizCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+    <result column="READ_FLAG" property="readFlag" jdbcType="VARCHAR" />
+    <result column="RETRIEVE_READ_FLAG" property="retrieveReadFlag" jdbcType="VARCHAR" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="SENT_TIME" property="sentTime" jdbcType="TIMESTAMP" />
+    <result column="RECV_TIME" property="recvTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lakala.ipos.receivelog.model.ReceivedLog" extends="BaseResultMap" >
+    <result column="DATA_PAK" property="dataPak" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, APP_VERSION, BIZ_CODE, SERIAL_NO, READ_FLAG, RETRIEVE_READ_FLAG, TOKEN, 
+    SENT_TIME, RECV_TIME, CREATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    DATA_PAK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ipos_data_recv_log
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ipos_data_recv_log
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lakala.ipos.receivelog.model.ReceivedLog" >
+    insert into ipos_data_recv_log (ID, APP_ID, APP_VERSION, 
+      BIZ_CODE, SERIAL_NO, READ_FLAG, 
+      RETRIEVE_READ_FLAG, TOKEN, SENT_TIME, 
+      RECV_TIME, CREATE_TIME, DATA_PAK
+      )
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=VARCHAR}, #{appVersion,jdbcType=VARCHAR}, 
+      #{bizCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=VARCHAR}, #{readFlag,jdbcType=VARCHAR}, 
+      #{retrieveReadFlag,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{sentTime,jdbcType=TIMESTAMP}, 
+      #{recvTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{dataPak,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lakala.ipos.receivelog.model.ReceivedLog" >
+    insert into ipos_data_recv_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="appVersion != null" >
+        APP_VERSION,
+      </if>
+      <if test="bizCode != null" >
+        BIZ_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG,
+      </if>
+      <if test="retrieveReadFlag != null" >
+        RETRIEVE_READ_FLAG,
+      </if>
+      <if test="token != null" >
+        TOKEN,
+      </if>
+      <if test="sentTime != null" >
+        SENT_TIME,
+      </if>
+      <if test="recvTime != null" >
+        RECV_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="dataPak != null" >
+        DATA_PAK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="bizCode != null" >
+        #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="readFlag != null" >
+        #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="retrieveReadFlag != null" >
+        #{retrieveReadFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="sentTime != null" >
+        #{sentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvTime != null" >
+        #{recvTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataPak != null" >
+        #{dataPak,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lakala.ipos.receivelog.model.ReceivedLog" >
+    update ipos_data_recv_log
+    <set >
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        APP_VERSION = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="bizCode != null" >
+        BIZ_CODE = #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="retrieveReadFlag != null" >
+        RETRIEVE_READ_FLAG = #{retrieveReadFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        TOKEN = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="sentTime != null" >
+        SENT_TIME = #{sentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvTime != null" >
+        RECV_TIME = #{recvTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataPak != null" >
+        DATA_PAK = #{dataPak,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lakala.ipos.receivelog.model.ReceivedLog" >
+    update ipos_data_recv_log
+    set APP_ID = #{appId,jdbcType=VARCHAR},
+      APP_VERSION = #{appVersion,jdbcType=VARCHAR},
+      BIZ_CODE = #{bizCode,jdbcType=VARCHAR},
+      SERIAL_NO = #{serialNo,jdbcType=VARCHAR},
+      READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      RETRIEVE_READ_FLAG = #{retrieveReadFlag,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      SENT_TIME = #{sentTime,jdbcType=TIMESTAMP},
+      RECV_TIME = #{recvTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      DATA_PAK = #{dataPak,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lakala.ipos.receivelog.model.ReceivedLog" >
+    update ipos_data_recv_log
+    set APP_ID = #{appId,jdbcType=VARCHAR},
+      APP_VERSION = #{appVersion,jdbcType=VARCHAR},
+      BIZ_CODE = #{bizCode,jdbcType=VARCHAR},
+      SERIAL_NO = #{serialNo,jdbcType=VARCHAR},
+      READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      RETRIEVE_READ_FLAG = #{retrieveReadFlag,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      SENT_TIME = #{sentTime,jdbcType=TIMESTAMP},
+      RECV_TIME = #{recvTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 插入数据并返回id -->
+  <insert id="insertAndGetId" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.lakala.ipos.receivelog.model.ReceivedLog">
+    <![CDATA[
+    	insert into ipos_data_recv_log
+		(ID, APP_ID, APP_VERSION,
+		BIZ_CODE, SERIAL_NO, CREATE_TIME,
+		READ_FLAG,
+		RETRIEVE_READ_FLAG, TOKEN,
+		SENT_TIME, RECV_TIME, DATA_PAK
+		)
+		values
+		(#{id,jdbcType=BIGINT}, #{appId,jdbcType=VARCHAR},
+		#{appVersion,jdbcType=VARCHAR},
+		#{bizCode,jdbcType=VARCHAR},
+		#{serialNo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{readFlag,jdbcType=VARCHAR}, #{retrieveReadFlag,jdbcType=VARCHAR},
+		#{token,jdbcType=VARCHAR},
+		#{sentTime,jdbcType=TIMESTAMP},
+		#{recvTime,jdbcType=TIMESTAMP}, #{dataPak,jdbcType=LONGVARCHAR}
+		)
+    ]]>
+	</insert>
+</mapper>

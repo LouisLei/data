@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lakala.ipos.paymentdata.dao.PaymentDataMapper" >
+  <resultMap id="BaseResultMap" type="com.lakala.ipos.paymentdata.model.PaymentData" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="RECV_ID" property="recvId" jdbcType="BIGINT" />
+    <result column="ACTION_ID" property="actionId" jdbcType="VARCHAR" />
+    <result column="EVENT_ID" property="eventId" jdbcType="VARCHAR" />
+    <result column="TIME_STAMP" property="timeStamp" jdbcType="TIMESTAMP" />
+    <result column="TRADE_TYPE" property="tradeType" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="MER_TERMINAL_NUM" property="merTerminalNum" jdbcType="VARCHAR" />
+    <result column="CARD_INFO_STYLE" property="cardInfoStyle" jdbcType="VARCHAR" />
+    <result column="CHECK_CARD_STATUS" property="checkCardStatus" jdbcType="VARCHAR" />
+    <result column="CHECK_CARD_ERR_CODE" property="checkCardErrCode" jdbcType="VARCHAR" />
+    <result column="STAR_PBOC" property="starPBOC" jdbcType="VARCHAR" />
+    <result column="CARD_FORMAT" property="cardFormat" jdbcType="VARCHAR" />
+    <result column="MERCHANT_NUM" property="merchantNum" jdbcType="VARCHAR" />
+    <result column="TERMINAL_NUM" property="terminalNum" jdbcType="VARCHAR" />
+    <result column="BATCH_NUM" property="batchNum" jdbcType="VARCHAR" />
+    <result column="SERIAL_NUM" property="serialNum" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="VARCHAR" />
+    <result column="NETWORK_TYPE" property="networkType" jdbcType="VARCHAR" />
+    <result column="NETWORK_INFO" property="networkInfo" jdbcType="VARCHAR" />
+    <result column="HOST_RETURN_STATUS" property="hostReturnStatus" jdbcType="VARCHAR" />
+    <result column="WRITE_CARD_PRO_STATUS" property="writeCardProStatus" jdbcType="VARCHAR" />
+    <result column="CALL_PRINTER_TIME" property="callPrinterTime" jdbcType="TIMESTAMP" />
+    <result column="EMV_ERR_CODE" property="EMVErrCode" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="READ_FLAG" property="readFlag" jdbcType="VARCHAR" />
+    <result column="DEL_STATUS" property="delStatus" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RECV_ID, ACTION_ID, EVENT_ID, TIME_STAMP, TRADE_TYPE, APP_ID, MER_TERMINAL_NUM, 
+    CARD_INFO_STYLE, CHECK_CARD_STATUS, CHECK_CARD_ERR_CODE, STAR_PBOC, CARD_FORMAT, 
+    MERCHANT_NUM, TERMINAL_NUM, BATCH_NUM, SERIAL_NUM, AMOUNT, NETWORK_TYPE, NETWORK_INFO, 
+    HOST_RETURN_STATUS, WRITE_CARD_PRO_STATUS, CALL_PRINTER_TIME, EMV_ERR_CODE, CREATE_TIME, 
+    MODIFY_TIME, READ_FLAG, DEL_STATUS, SN, RESULT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ipos_payment_data
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ipos_payment_data
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lakala.ipos.paymentdata.model.PaymentData" >
+    insert into ipos_payment_data (ID, RECV_ID, ACTION_ID, 
+      EVENT_ID, TIME_STAMP, TRADE_TYPE, 
+      APP_ID, MER_TERMINAL_NUM, CARD_INFO_STYLE, 
+      CHECK_CARD_STATUS, CHECK_CARD_ERR_CODE, STAR_PBOC, 
+      CARD_FORMAT, MERCHANT_NUM, TERMINAL_NUM, 
+      BATCH_NUM, SERIAL_NUM, AMOUNT, 
+      NETWORK_TYPE, NETWORK_INFO, HOST_RETURN_STATUS, 
+      WRITE_CARD_PRO_STATUS, CALL_PRINTER_TIME, 
+      EMV_ERR_CODE, CREATE_TIME, MODIFY_TIME, 
+      READ_FLAG, DEL_STATUS, SN, 
+      RESULT)
+    values (#{id,jdbcType=BIGINT}, #{recvId,jdbcType=BIGINT}, #{actionId,jdbcType=VARCHAR}, 
+      #{eventId,jdbcType=VARCHAR}, #{timeStamp,jdbcType=TIMESTAMP}, #{tradeType,jdbcType=VARCHAR}, 
+      #{appId,jdbcType=VARCHAR}, #{merTerminalNum,jdbcType=VARCHAR}, #{cardInfoStyle,jdbcType=VARCHAR}, 
+      #{checkCardStatus,jdbcType=VARCHAR}, #{checkCardErrCode,jdbcType=VARCHAR}, #{starPBOC,jdbcType=VARCHAR}, 
+      #{cardFormat,jdbcType=VARCHAR}, #{merchantNum,jdbcType=VARCHAR}, #{terminalNum,jdbcType=VARCHAR}, 
+      #{batchNum,jdbcType=VARCHAR}, #{serialNum,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, 
+      #{networkType,jdbcType=VARCHAR}, #{networkInfo,jdbcType=VARCHAR}, #{hostReturnStatus,jdbcType=VARCHAR}, 
+      #{writeCardProStatus,jdbcType=VARCHAR}, #{callPrinterTime,jdbcType=TIMESTAMP}, 
+      #{EMVErrCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{readFlag,jdbcType=VARCHAR}, #{delStatus,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lakala.ipos.paymentdata.model.PaymentData" >
+    insert into ipos_payment_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="recvId != null" >
+        RECV_ID,
+      </if>
+      <if test="actionId != null" >
+        ACTION_ID,
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="timeStamp != null" >
+        TIME_STAMP,
+      </if>
+      <if test="tradeType != null" >
+        TRADE_TYPE,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="merTerminalNum != null" >
+        MER_TERMINAL_NUM,
+      </if>
+      <if test="cardInfoStyle != null" >
+        CARD_INFO_STYLE,
+      </if>
+      <if test="checkCardStatus != null" >
+        CHECK_CARD_STATUS,
+      </if>
+      <if test="checkCardErrCode != null" >
+        CHECK_CARD_ERR_CODE,
+      </if>
+      <if test="starPBOC != null" >
+        STAR_PBOC,
+      </if>
+      <if test="cardFormat != null" >
+        CARD_FORMAT,
+      </if>
+      <if test="merchantNum != null" >
+        MERCHANT_NUM,
+      </if>
+      <if test="terminalNum != null" >
+        TERMINAL_NUM,
+      </if>
+      <if test="batchNum != null" >
+        BATCH_NUM,
+      </if>
+      <if test="serialNum != null" >
+        SERIAL_NUM,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="networkType != null" >
+        NETWORK_TYPE,
+      </if>
+      <if test="networkInfo != null" >
+        NETWORK_INFO,
+      </if>
+      <if test="hostReturnStatus != null" >
+        HOST_RETURN_STATUS,
+      </if>
+      <if test="writeCardProStatus != null" >
+        WRITE_CARD_PRO_STATUS,
+      </if>
+      <if test="callPrinterTime != null" >
+        CALL_PRINTER_TIME,
+      </if>
+      <if test="EMVErrCode != null" >
+        EMV_ERR_CODE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG,
+      </if>
+      <if test="delStatus != null" >
+        DEL_STATUS,
+      </if>
+      <if test="sn != null" >
+        SN,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="recvId != null" >
+        #{recvId,jdbcType=BIGINT},
+      </if>
+      <if test="actionId != null" >
+        #{actionId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStamp != null" >
+        #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="merTerminalNum != null" >
+        #{merTerminalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cardInfoStyle != null" >
+        #{cardInfoStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCardStatus != null" >
+        #{checkCardStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCardErrCode != null" >
+        #{checkCardErrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="starPBOC != null" >
+        #{starPBOC,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFormat != null" >
+        #{cardFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNum != null" >
+        #{merchantNum,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalNum != null" >
+        #{terminalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNum != null" >
+        #{batchNum,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNum != null" >
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="networkType != null" >
+        #{networkType,jdbcType=VARCHAR},
+      </if>
+      <if test="networkInfo != null" >
+        #{networkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hostReturnStatus != null" >
+        #{hostReturnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="writeCardProStatus != null" >
+        #{writeCardProStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="callPrinterTime != null" >
+        #{callPrinterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EMVErrCode != null" >
+        #{EMVErrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readFlag != null" >
+        #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lakala.ipos.paymentdata.model.PaymentData" >
+    update ipos_payment_data
+    <set >
+      <if test="recvId != null" >
+        RECV_ID = #{recvId,jdbcType=BIGINT},
+      </if>
+      <if test="actionId != null" >
+        ACTION_ID = #{actionId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStamp != null" >
+        TIME_STAMP = #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeType != null" >
+        TRADE_TYPE = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="merTerminalNum != null" >
+        MER_TERMINAL_NUM = #{merTerminalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cardInfoStyle != null" >
+        CARD_INFO_STYLE = #{cardInfoStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCardStatus != null" >
+        CHECK_CARD_STATUS = #{checkCardStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCardErrCode != null" >
+        CHECK_CARD_ERR_CODE = #{checkCardErrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="starPBOC != null" >
+        STAR_PBOC = #{starPBOC,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFormat != null" >
+        CARD_FORMAT = #{cardFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNum != null" >
+        MERCHANT_NUM = #{merchantNum,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalNum != null" >
+        TERMINAL_NUM = #{terminalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNum != null" >
+        BATCH_NUM = #{batchNum,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNum != null" >
+        SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="networkType != null" >
+        NETWORK_TYPE = #{networkType,jdbcType=VARCHAR},
+      </if>
+      <if test="networkInfo != null" >
+        NETWORK_INFO = #{networkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hostReturnStatus != null" >
+        HOST_RETURN_STATUS = #{hostReturnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="writeCardProStatus != null" >
+        WRITE_CARD_PRO_STATUS = #{writeCardProStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="callPrinterTime != null" >
+        CALL_PRINTER_TIME = #{callPrinterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EMVErrCode != null" >
+        EMV_ERR_CODE = #{EMVErrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        DEL_STATUS = #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        SN = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lakala.ipos.paymentdata.model.PaymentData" >
+    update ipos_payment_data
+    set RECV_ID = #{recvId,jdbcType=BIGINT},
+      ACTION_ID = #{actionId,jdbcType=VARCHAR},
+      EVENT_ID = #{eventId,jdbcType=VARCHAR},
+      TIME_STAMP = #{timeStamp,jdbcType=TIMESTAMP},
+      TRADE_TYPE = #{tradeType,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      MER_TERMINAL_NUM = #{merTerminalNum,jdbcType=VARCHAR},
+      CARD_INFO_STYLE = #{cardInfoStyle,jdbcType=VARCHAR},
+      CHECK_CARD_STATUS = #{checkCardStatus,jdbcType=VARCHAR},
+      CHECK_CARD_ERR_CODE = #{checkCardErrCode,jdbcType=VARCHAR},
+      STAR_PBOC = #{starPBOC,jdbcType=VARCHAR},
+      CARD_FORMAT = #{cardFormat,jdbcType=VARCHAR},
+      MERCHANT_NUM = #{merchantNum,jdbcType=VARCHAR},
+      TERMINAL_NUM = #{terminalNum,jdbcType=VARCHAR},
+      BATCH_NUM = #{batchNum,jdbcType=VARCHAR},
+      SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=VARCHAR},
+      NETWORK_TYPE = #{networkType,jdbcType=VARCHAR},
+      NETWORK_INFO = #{networkInfo,jdbcType=VARCHAR},
+      HOST_RETURN_STATUS = #{hostReturnStatus,jdbcType=VARCHAR},
+      WRITE_CARD_PRO_STATUS = #{writeCardProStatus,jdbcType=VARCHAR},
+      CALL_PRINTER_TIME = #{callPrinterTime,jdbcType=TIMESTAMP},
+      EMV_ERR_CODE = #{EMVErrCode,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      DEL_STATUS = #{delStatus,jdbcType=VARCHAR},
+      SN = #{sn,jdbcType=VARCHAR},
+      RESULT = #{result,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  	<!-- 批量插入 -->
+	<insert id="insertBatchByRecvId" parameterType="map"> 
+		<![CDATA[
+		insert into ipos_payment_data (ID, RECV_ID, ACTION_ID, 
+      EVENT_ID, TIME_STAMP, TRADE_TYPE, 
+      APP_ID, MER_TERMINAL_NUM, CARD_INFO_STYLE, 
+      CHECK_CARD_STATUS, CHECK_CARD_ERR_CODE, STAR_PBOC, 
+      CARD_FORMAT, MERCHANT_NUM, TERMINAL_NUM, 
+      BATCH_NUM, SERIAL_NUM, AMOUNT, 
+      NETWORK_TYPE, NETWORK_INFO, HOST_RETURN_STATUS, 
+      WRITE_CARD_PRO_STATUS, CALL_PRINTER_TIME, 
+      EMV_ERR_CODE, SN, 
+      RESULT)
+    values 
+		]]>
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			<![CDATA[ 
+      		(#{item.id,jdbcType=BIGINT}, #{recvId,jdbcType=BIGINT}, #{item.actionId,jdbcType=VARCHAR}, 
+      #{item.eventId,jdbcType=VARCHAR}, #{item.timeStamp,jdbcType=TIMESTAMP}, #{item.tradeType,jdbcType=VARCHAR}, 
+      #{item.appId,jdbcType=VARCHAR}, #{item.merTerminalNum,jdbcType=VARCHAR}, #{item.cardInfoStyle,jdbcType=VARCHAR}, 
+      #{item.checkCardStatus,jdbcType=VARCHAR}, #{item.checkCardErrCode,jdbcType=VARCHAR}, #{item.starPBOC,jdbcType=VARCHAR}, 
+      #{item.cardFormat,jdbcType=VARCHAR}, #{item.merchantNum,jdbcType=VARCHAR}, #{item.terminalNum,jdbcType=VARCHAR}, 
+      #{item.batchNum,jdbcType=VARCHAR}, #{item.serialNum,jdbcType=VARCHAR}, #{item.amount,jdbcType=VARCHAR}, 
+      #{item.networkType,jdbcType=VARCHAR}, #{item.networkInfo,jdbcType=VARCHAR}, #{item.hostReturnStatus,jdbcType=VARCHAR}, 
+      #{item.writeCardProStatus,jdbcType=VARCHAR}, #{item.callPrinterTime,jdbcType=TIMESTAMP}, 
+      #{item.EMVErrCode,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{item.result,jdbcType=VARCHAR})
+			]]>
+		</foreach>
+	</insert>
+	<!-- 根据RecvId删除数据 -->
+	<delete id="deleteByRecvId" parameterType="java.lang.Long">
+		<![CDATA[
+			delete from ipos_payment_data where  RECV_ID = #{recvId,jdbcType=BIGINT}
+		]]>
+	</delete>
+</mapper>

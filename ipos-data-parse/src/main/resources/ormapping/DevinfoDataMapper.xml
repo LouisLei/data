@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lakala.ipos.devinfodata.dao.DevinfoDataMapper" >
+  <resultMap id="BaseResultMap" type="com.lakala.ipos.devinfodata.model.DevinfoData" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="RECV_ID" property="recvId" jdbcType="BIGINT" />
+    <result column="CID" property="CID" jdbcType="VARCHAR" />
+    <result column="MNC" property="MNC" jdbcType="VARCHAR" />
+    <result column="MCC" property="MCC" jdbcType="VARCHAR" />
+    <result column="LAC" property="LAC" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="VARCHAR" />
+    <result column="MAX_FREQ" property="maxFreq" jdbcType="VARCHAR" />
+    <result column="CPU_NAME" property="cpuName" jdbcType="VARCHAR" />
+    <result column="MIN_FREQ" property="minFreq" jdbcType="VARCHAR" />
+    <result column="CUR_FREQ" property="curFreq" jdbcType="VARCHAR" />
+    <result column="AVAIL_MEM" property="availMem" jdbcType="VARCHAR" />
+    <result column="TOTAL_MEM" property="totalMem" jdbcType="VARCHAR" />
+    <result column="TOTAL_SD_CARD" property="totalSdcard" jdbcType="VARCHAR" />
+    <result column="AVAIL_SD_CARD" property="availSdcard" jdbcType="VARCHAR" />
+    <result column="MAC" property="mac" jdbcType="VARCHAR" />
+    <result column="TIME_STAMP" property="timeStamp" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="READ_FLAG" property="readFlag" jdbcType="VARCHAR" />
+    <result column="DEL_STATUS" property="delStatus" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="APP" property="app" jdbcType="VARCHAR" />
+    <result column="MANUFACTURE" property="manufacture" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RECV_ID, CID, MNC, MCC, LAC, LEVEL, MAX_FREQ, CPU_NAME, MIN_FREQ, CUR_FREQ, AVAIL_MEM, 
+    TOTAL_MEM, TOTAL_SD_CARD, AVAIL_SD_CARD, MAC, TIME_STAMP, CREATE_TIME, MODIFY_TIME, 
+    READ_FLAG, DEL_STATUS, SN, APP, MANUFACTURE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ipos_devinfo_data
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ipos_devinfo_data
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lakala.ipos.devinfodata.model.DevinfoData" >
+    insert into ipos_devinfo_data (ID, RECV_ID, CID, 
+      MNC, MCC, LAC, LEVEL, 
+      MAX_FREQ, CPU_NAME, MIN_FREQ, 
+      CUR_FREQ, AVAIL_MEM, TOTAL_MEM, 
+      TOTAL_SD_CARD, AVAIL_SD_CARD, MAC, 
+      TIME_STAMP, CREATE_TIME, MODIFY_TIME, 
+      READ_FLAG, DEL_STATUS, SN, 
+      APP, MANUFACTURE)
+    values (#{id,jdbcType=BIGINT}, #{recvId,jdbcType=BIGINT}, #{cid,jdbcType=VARCHAR}, 
+      #{mnc,jdbcType=VARCHAR}, #{mcc,jdbcType=VARCHAR}, #{lac,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{maxFreq,jdbcType=VARCHAR}, #{cpuName,jdbcType=VARCHAR}, #{minFreq,jdbcType=VARCHAR}, 
+      #{curFreq,jdbcType=VARCHAR}, #{availMem,jdbcType=VARCHAR}, #{totalMem,jdbcType=VARCHAR}, 
+      #{totalSdcard,jdbcType=VARCHAR}, #{availSdcard,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR}, 
+      #{timeStamp,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{readFlag,jdbcType=VARCHAR}, #{delStatus,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{app,jdbcType=VARCHAR}, #{manufacture,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lakala.ipos.devinfodata.model.DevinfoData" >
+    insert into ipos_devinfo_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="recvId != null" >
+        RECV_ID,
+      </if>
+      <if test="CID != null" >
+        CID,
+      </if>
+      <if test="MNC != null" >
+        MNC,
+      </if>
+      <if test="MCC != null" >
+        MCC,
+      </if>
+      <if test="LAC != null" >
+        LAC,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="maxFreq != null" >
+        MAX_FREQ,
+      </if>
+      <if test="cpuName != null" >
+        CPU_NAME,
+      </if>
+      <if test="minFreq != null" >
+        MIN_FREQ,
+      </if>
+      <if test="curFreq != null" >
+        CUR_FREQ,
+      </if>
+      <if test="availMem != null" >
+        AVAIL_MEM,
+      </if>
+      <if test="totalMem != null" >
+        TOTAL_MEM,
+      </if>
+      <if test="totalSdcard != null" >
+        TOTAL_SD_CARD,
+      </if>
+      <if test="availSdcard != null" >
+        AVAIL_SD_CARD,
+      </if>
+      <if test="mac != null" >
+        MAC,
+      </if>
+      <if test="timeStamp != null" >
+        TIME_STAMP,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG,
+      </if>
+      <if test="delStatus != null" >
+        DEL_STATUS,
+      </if>
+      <if test="sn != null" >
+        SN,
+      </if>
+      <if test="app != null" >
+        APP,
+      </if>
+      <if test="manufacture != null" >
+        MANUFACTURE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="recvId != null" >
+        #{recvId,jdbcType=BIGINT},
+      </if>
+      <if test="CID != null" >
+        #{CID,jdbcType=VARCHAR},
+      </if>
+      <if test="MNC != null" >
+        #{MNC,jdbcType=VARCHAR},
+      </if>
+      <if test="MCC != null" >
+        #{MCC,jdbcType=VARCHAR},
+      </if>
+      <if test="LAC != null" >
+        #{LAC,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="maxFreq != null" >
+        #{maxFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="cpuName != null" >
+        #{cpuName,jdbcType=VARCHAR},
+      </if>
+      <if test="minFreq != null" >
+        #{minFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="curFreq != null" >
+        #{curFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="availMem != null" >
+        #{availMem,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMem != null" >
+        #{totalMem,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSdcard != null" >
+        #{totalSdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="availSdcard != null" >
+        #{availSdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStamp != null" >
+        #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readFlag != null" >
+        #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="app != null" >
+        #{app,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null" >
+        #{manufacture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lakala.ipos.devinfodata.model.DevinfoData" >
+    update ipos_devinfo_data
+    <set >
+      <if test="recvId != null" >
+        RECV_ID = #{recvId,jdbcType=BIGINT},
+      </if>
+      <if test="CID != null" >
+        CID = #{CID,jdbcType=VARCHAR},
+      </if>
+      <if test="MNC != null" >
+        MNC = #{MNC,jdbcType=VARCHAR},
+      </if>
+      <if test="MCC != null" >
+        MCC = #{MCC,jdbcType=VARCHAR},
+      </if>
+      <if test="LAC != null" >
+        LAC = #{LAC,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="maxFreq != null" >
+        MAX_FREQ = #{maxFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="cpuName != null" >
+        CPU_NAME = #{cpuName,jdbcType=VARCHAR},
+      </if>
+      <if test="minFreq != null" >
+        MIN_FREQ = #{minFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="curFreq != null" >
+        CUR_FREQ = #{curFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="availMem != null" >
+        AVAIL_MEM = #{availMem,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMem != null" >
+        TOTAL_MEM = #{totalMem,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSdcard != null" >
+        TOTAL_SD_CARD = #{totalSdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="availSdcard != null" >
+        AVAIL_SD_CARD = #{availSdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        MAC = #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStamp != null" >
+        TIME_STAMP = #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        DEL_STATUS = #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        SN = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="app != null" >
+        APP = #{app,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null" >
+        MANUFACTURE = #{manufacture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lakala.ipos.devinfodata.model.DevinfoData" >
+    update ipos_devinfo_data
+    set RECV_ID = #{recvId,jdbcType=BIGINT},
+      CID = #{CID,jdbcType=VARCHAR},
+      MNC = #{MNC,jdbcType=VARCHAR},
+      MCC = #{MCC,jdbcType=VARCHAR},
+      LAC = #{LAC,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=VARCHAR},
+      MAX_FREQ = #{maxFreq,jdbcType=VARCHAR},
+      CPU_NAME = #{cpuName,jdbcType=VARCHAR},
+      MIN_FREQ = #{minFreq,jdbcType=VARCHAR},
+      CUR_FREQ = #{curFreq,jdbcType=VARCHAR},
+      AVAIL_MEM = #{availMem,jdbcType=VARCHAR},
+      TOTAL_MEM = #{totalMem,jdbcType=VARCHAR},
+      TOTAL_SD_CARD = #{totalSdcard,jdbcType=VARCHAR},
+      AVAIL_SD_CARD = #{availSdcard,jdbcType=VARCHAR},
+      MAC = #{mac,jdbcType=VARCHAR},
+      TIME_STAMP = #{timeStamp,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      DEL_STATUS = #{delStatus,jdbcType=VARCHAR},
+      SN = #{sn,jdbcType=VARCHAR},
+      APP = #{app,jdbcType=VARCHAR},
+      MANUFACTURE = #{manufacture,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量插入 -->
+  <insert id="insertBatchByRecvId" parameterType="map">  
+       <![CDATA[ 
+       insert into ipos_devinfo_data (ID, RECV_ID, CID, 
+      MNC, MCC, LAC, LEVEL, 
+      MAX_FREQ, CPU_NAME, MIN_FREQ, 
+      CUR_FREQ, AVAIL_MEM, TOTAL_MEM, 
+      TOTAL_SD_CARD, AVAIL_SD_CARD, MAC, 
+      TIME_STAMP, SN, 
+      APP, MANUFACTURE)
+    values 
+	  ]]>
+	  <foreach collection="list" item="item" index="index" separator=",">
+	  	<![CDATA[ 
+		 (#{item.id,jdbcType=BIGINT}, #{recvId,jdbcType=BIGINT}, #{item.CID,jdbcType=VARCHAR}, 
+      	  #{item.MNC,jdbcType=VARCHAR}, #{item.MCC,jdbcType=VARCHAR}, #{item.LAC,jdbcType=VARCHAR}, #{item.level,jdbcType=VARCHAR}, 
+          #{item.maxFreq,jdbcType=VARCHAR}, #{item.cpuName,jdbcType=VARCHAR}, #{item.minFreq,jdbcType=VARCHAR}, 
+      	  #{item.curFreq,jdbcType=VARCHAR}, #{item.availMem,jdbcType=VARCHAR}, #{item.totalMem,jdbcType=VARCHAR}, 
+          #{item.totalSdcard,jdbcType=VARCHAR}, #{item.availSdcard,jdbcType=VARCHAR}, #{item.mac,jdbcType=VARCHAR}, 
+          #{item.timeStamp,jdbcType=TIMESTAMP}, #{item.sn,jdbcType=VARCHAR}, 
+          #{item.app,jdbcType=VARCHAR}, #{item.manufacture,jdbcType=VARCHAR})
+        ]]>
+		</foreach>
+	</insert>
+	<!-- 根据RecvId删除数据 -->
+	<delete id="deleteByRecvId" parameterType="java.lang.Long">
+		<![CDATA[
+			delete from ipos_devinfo_data where  RECV_ID = #{recvId,jdbcType=BIGINT}
+		]]>
+	</delete>
+</mapper>

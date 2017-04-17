@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lakala.ipos.iposmanager.dao.IposManagerDataMapper">
+	<resultMap id="BaseResultMap" type="com.lakala.ipos.iposmanager.model.IposManagerData">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="RECV_ID" property="recvId" jdbcType="BIGINT" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="ACTION_ID" property="actionId" jdbcType="VARCHAR" />
+		<result column="ACTION_NAME" property="actionName" jdbcType="VARCHAR" />
+		<result column="EVENT_ID" property="eventId" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="TIME_STAMP" property="timeStamp" jdbcType="TIMESTAMP" />
+		<result column="REASON" property="reason" jdbcType="VARCHAR" />
+		<result column="USEFUL_MEMORY" property="usefulMemory"
+			jdbcType="VARCHAR" />
+		<result column="PERCENT" property="percent" jdbcType="VARCHAR" />
+		<result column="ICCID" property="iccid" jdbcType="VARCHAR" />
+		<result column="AVAILABLE" property="available" jdbcType="VARCHAR" />
+		<result column="TOTAL" property="total" jdbcType="VARCHAR" />
+		<result column="BALANCE" property="balance" jdbcType="VARCHAR" />
+		<result column="PACK_LIST" property="packList" jdbcType="VARCHAR" />
+		<result column="ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+		<result column="PACK_ID" property="packId" jdbcType="VARCHAR" />
+		<result column="AMOUNT" property="amount" jdbcType="VARCHAR" />
+		<result column="CRASH" property="crash" jdbcType="VARCHAR" />
+		<result column="SN" property="sn" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, RECV_ID, APP_ID, ACTION_ID, ACTION_NAME, EVENT_ID, STATUS,
+		TIME_STAMP, REASON,
+		USEFUL_MEMORY, PERCENT, ICCID, AVAILABLE, TOTAL, BALANCE, PACK_LIST, ORDER_NUM,
+		PACK_ID,
+		AMOUNT, CRASH, SN
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ipos_manager_data
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from ipos_manager_data
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.lakala.ipos.iposmanager.model.IposManagerData">
+		insert into ipos_manager_data (ID, RECV_ID, APP_ID,
+		ACTION_ID, ACTION_NAME, EVENT_ID,
+		STATUS, TIME_STAMP, REASON,
+		USEFUL_MEMORY, PERCENT, ICCID,
+		AVAILABLE, TOTAL, BALANCE,
+		PACK_LIST, ORDER_NUM, PACK_ID,
+		AMOUNT, CRASH, SN)
+		values (#{id,jdbcType=BIGINT}, #{recvId,jdbcType=BIGINT},
+		#{appId,jdbcType=VARCHAR},
+		#{actionId,jdbcType=VARCHAR}, #{actionName,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{timeStamp,jdbcType=TIMESTAMP},
+		#{reason,jdbcType=VARCHAR},
+		#{usefulMemory,jdbcType=VARCHAR}, #{percent,jdbcType=VARCHAR}, #{iccid,jdbcType=VARCHAR},
+		#{available,jdbcType=VARCHAR}, #{total,jdbcType=VARCHAR},
+		#{balance,jdbcType=VARCHAR},
+		#{packList,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, #{packId,jdbcType=VARCHAR},
+		#{amount,jdbcType=VARCHAR}, #{crash,jdbcType=VARCHAR},
+		#{sn,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lakala.ipos.iposmanager.model.IposManagerData">
+		insert into ipos_manager_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="recvId != null">
+				RECV_ID,
+			</if>
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="actionId != null">
+				ACTION_ID,
+			</if>
+			<if test="actionName != null">
+				ACTION_NAME,
+			</if>
+			<if test="eventId != null">
+				EVENT_ID,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP,
+			</if>
+			<if test="reason != null">
+				REASON,
+			</if>
+			<if test="usefulMemory != null">
+				USEFUL_MEMORY,
+			</if>
+			<if test="percent != null">
+				PERCENT,
+			</if>
+			<if test="iccid != null">
+				ICCID,
+			</if>
+			<if test="available != null">
+				AVAILABLE,
+			</if>
+			<if test="total != null">
+				TOTAL,
+			</if>
+			<if test="balance != null">
+				BALANCE,
+			</if>
+			<if test="packList != null">
+				PACK_LIST,
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM,
+			</if>
+			<if test="packId != null">
+				PACK_ID,
+			</if>
+			<if test="amount != null">
+				AMOUNT,
+			</if>
+			<if test="crash != null">
+				CRASH,
+			</if>
+			<if test="sn != null">
+				SN,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="recvId != null">
+				#{recvId,jdbcType=BIGINT},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="actionId != null">
+				#{actionId,jdbcType=VARCHAR},
+			</if>
+			<if test="actionName != null">
+				#{actionName,jdbcType=VARCHAR},
+			</if>
+			<if test="eventId != null">
+				#{eventId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				#{timeStamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reason != null">
+				#{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="usefulMemory != null">
+				#{usefulMemory,jdbcType=VARCHAR},
+			</if>
+			<if test="percent != null">
+				#{percent,jdbcType=VARCHAR},
+			</if>
+			<if test="iccid != null">
+				#{iccid,jdbcType=VARCHAR},
+			</if>
+			<if test="available != null">
+				#{available,jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				#{total,jdbcType=VARCHAR},
+			</if>
+			<if test="balance != null">
+				#{balance,jdbcType=VARCHAR},
+			</if>
+			<if test="packList != null">
+				#{packList,jdbcType=VARCHAR},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum,jdbcType=VARCHAR},
+			</if>
+			<if test="packId != null">
+				#{packId,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=VARCHAR},
+			</if>
+			<if test="crash != null">
+				#{crash,jdbcType=VARCHAR},
+			</if>
+			<if test="sn != null">
+				#{sn,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lakala.ipos.iposmanager.model.IposManagerData">
+		update ipos_manager_data
+		<set>
+			<if test="recvId != null">
+				RECV_ID = #{recvId,jdbcType=BIGINT},
+			</if>
+			<if test="appId != null">
+				APP_ID = #{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="actionId != null">
+				ACTION_ID = #{actionId,jdbcType=VARCHAR},
+			</if>
+			<if test="actionName != null">
+				ACTION_NAME = #{actionName,jdbcType=VARCHAR},
+			</if>
+			<if test="eventId != null">
+				EVENT_ID = #{eventId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP = #{timeStamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reason != null">
+				REASON = #{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="usefulMemory != null">
+				USEFUL_MEMORY = #{usefulMemory,jdbcType=VARCHAR},
+			</if>
+			<if test="percent != null">
+				PERCENT = #{percent,jdbcType=VARCHAR},
+			</if>
+			<if test="iccid != null">
+				ICCID = #{iccid,jdbcType=VARCHAR},
+			</if>
+			<if test="available != null">
+				AVAILABLE = #{available,jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				TOTAL = #{total,jdbcType=VARCHAR},
+			</if>
+			<if test="balance != null">
+				BALANCE = #{balance,jdbcType=VARCHAR},
+			</if>
+			<if test="packList != null">
+				PACK_LIST = #{packList,jdbcType=VARCHAR},
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+			</if>
+			<if test="packId != null">
+				PACK_ID = #{packId,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				AMOUNT = #{amount,jdbcType=VARCHAR},
+			</if>
+			<if test="crash != null">
+				CRASH = #{crash,jdbcType=VARCHAR},
+			</if>
+			<if test="sn != null">
+				SN = #{sn,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lakala.ipos.iposmanager.model.IposManagerData">
+		update ipos_manager_data
+		set RECV_ID = #{recvId,jdbcType=BIGINT},
+		APP_ID = #{appId,jdbcType=VARCHAR},
+		ACTION_ID = #{actionId,jdbcType=VARCHAR},
+		ACTION_NAME = #{actionName,jdbcType=VARCHAR},
+		EVENT_ID = #{eventId,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=VARCHAR},
+		TIME_STAMP = #{timeStamp,jdbcType=TIMESTAMP},
+		REASON = #{reason,jdbcType=VARCHAR},
+		USEFUL_MEMORY = #{usefulMemory,jdbcType=VARCHAR},
+		PERCENT = #{percent,jdbcType=VARCHAR},
+		ICCID = #{iccid,jdbcType=VARCHAR},
+		AVAILABLE = #{available,jdbcType=VARCHAR},
+		TOTAL = #{total,jdbcType=VARCHAR},
+		BALANCE = #{balance,jdbcType=VARCHAR},
+		PACK_LIST = #{packList,jdbcType=VARCHAR},
+		ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+		PACK_ID = #{packId,jdbcType=VARCHAR},
+		AMOUNT = #{amount,jdbcType=VARCHAR},
+		CRASH = #{crash,jdbcType=VARCHAR},
+		SN = #{sn,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+
+	<!-- 批量插入 -->
+	<insert id="insertBatchByRecvId" parameterType="map"> 
+		<![CDATA[ 
+		insert into ipos_manager_data (
+			ID,
+			RECV_ID,
+			APP_ID,
+			ACTION_ID,
+			ACTION_NAME,
+			EVENT_ID,
+			STATUS,
+			TIME_STAMP,
+			REASON,
+			USEFUL_MEMORY,
+			PERCENT,
+			ICCID,
+			AVAILABLE,
+			TOTAL,
+			BALANCE,
+			PACK_LIST,
+			ORDER_NUM,
+			PACK_ID,
+			AMOUNT,
+			CRASH,
+			SN
+      	)
+    	values 
+		]]>
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			<![CDATA[
+			(
+			#{item.id, jdbcType=BIGINT},
+			#{recvId, jdbcType=BIGINT},
+			#{item.appId, jdbcType=VARCHAR},
+			#{item.actionId, jdbcType=VARCHAR},
+			#{item.actionName, jdbcType=VARCHAR},
+			#{item.eventId, jdbcType=VARCHAR},
+			#{item.status, jdbcType=VARCHAR},
+			#{item.timeStamp, jdbcType=TIMESTAMP},
+			#{item.reason, jdbcType=VARCHAR},
+			#{item.usefulMemory, jdbcType=VARCHAR},
+			#{item.percent, jdbcType=VARCHAR},
+			#{item.iccid, jdbcType=VARCHAR},
+			#{item.available, jdbcType=VARCHAR},
+			#{item.total, jdbcType=VARCHAR},
+			#{item.balance, jdbcType=VARCHAR},
+			#{item.packList, jdbcType=VARCHAR},
+			#{item.orderNum, jdbcType=VARCHAR},
+			#{item.packId, jdbcType=VARCHAR},
+			#{item.amount, jdbcType=VARCHAR},
+			#{item.crash, jdbcType=VARCHAR},
+			#{sn, jdbcType=VARCHAR}
+      		)
+		]]>
+		</foreach>
+	</insert>
+	<!-- 根据RecvId删除数据 -->
+	<delete id="deleteByRecvId" parameterType="java.lang.Long">
+		<![CDATA[
+			delete from ipos_manager_data where  RECV_ID = #{recvId,jdbcType=BIGINT}
+		]]>
+	</delete>
+</mapper>
